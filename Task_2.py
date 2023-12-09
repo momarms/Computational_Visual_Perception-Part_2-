@@ -94,25 +94,3 @@ max_gray = np.max(gray_values)
 print("Min after grayscale conversion:", min_gray)
 print("Max after grayscale conversion:", max_gray)
 
-# Enable vertex colors in the cloth mesh
-cloth_mesh.request_vertex_colors()
-mesh = om.TriMesh()
-
-# Check if the request was successful
-if cloth_mesh.has_vertex_colors():
-    print("Vertex colors enabled for cloth mesh.")
-else:
-    print("Failed to enable vertex colors for cloth mesh.")
-
-# Assign the grayscale values as vertex colors if the request was successful
-if cloth_mesh.has_vertex_colors():
-    for i, vertex in enumerate(cloth_mesh.vertices()):
-        color = gray_values[i]
-        cloth_mesh.set_color(vertex, [color, color, color, 1.0])
-
-    # Save the cloth mesh with vertex colors
-    output_mesh_path = r'Dataset\colored_cloths\1.obj'
-    om.write_mesh(output_mesh_path, cloth_mesh)
-    print("Cloth mesh with vertex colors saved at:", output_mesh_path)
-else:
-    print("Cannot assign vertex colors since the request was not successful.")
