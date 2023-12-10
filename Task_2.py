@@ -94,3 +94,28 @@ max_gray = np.max(gray_values)
 print("Min after grayscale conversion:", min_gray)
 print("Max after grayscale conversion:", max_gray)
 
+# Open the colored cloth file for reading and writing
+with open(r'Dataset\colored_cloths\1.obj', 'r+') as file:
+    # Read the lines from the file
+    lines = file.readlines()
+
+    # Move the cursor to the beginning of the file
+    file.seek(0)
+
+    # Iterate through each line
+    for i, line in enumerate(lines):
+        if line.startswith('v '):
+            # If it's a 'v' line, check if the index is within bounds
+            if i < len(gray_values):
+                gray_value = gray_values[i]
+                new_line = line.strip() + f' {gray_value} {gray_value} {gray_value}\n'
+                file.write(new_line)
+            else:
+                # Handle the case where the index is out of bounds
+                print(f"Warning: Index {i} is out of bounds for gray_values array.")
+        else:
+            # Otherwise, write the line as it is
+            file.write(line)
+
+    # Truncate any remaining content if the new content is shorter
+    file.truncate()
