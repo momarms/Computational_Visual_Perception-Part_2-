@@ -3,6 +3,7 @@ import numpy as np
 import openmesh as om
 import os
 from scipy.spatial import KDTree
+import shutil
 import tripy
 
 # Working directory
@@ -18,6 +19,12 @@ except FileNotFoundError:
     print("The specified directory does not exist.")
 except Exception as e:
     print("An error occurred:", e)
+
+# Make a copy of the cloth file
+source_path = r'Dataset\cloth\1.obj'
+destination_path = r'Dataset\colored_cloths\1.obj'
+
+shutil.copyfile(source_path, destination_path)
 
 # Load the cloths and objects
 cloth_mesh = om.read_trimesh(r'Dataset\cloth\1.obj')
@@ -95,7 +102,7 @@ print("Min after grayscale conversion:", min_gray)
 print("Max after grayscale conversion:", max_gray)
 
 # Open the colored cloth file for reading and writing
-with open(r'Dataset\colored_cloths\1.obj', 'r+') as file:
+with open(destination_path, 'r+') as file:
     # Read the lines from the file
     lines = file.readlines()
 
