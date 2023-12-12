@@ -11,7 +11,7 @@ random.seed(random_seed)
 # Counter
 total_images_rendered = 0
 
-for obj_index in range (1, 3):
+for obj_index in range (1, 101):
     # File path
     obj_file_path = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Dataset\\colored_cloths\\{obj_index}.obj'
     output_directory = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Illumination_Rendering'
