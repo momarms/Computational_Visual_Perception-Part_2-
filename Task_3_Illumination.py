@@ -30,7 +30,7 @@ for obj_index in range (1, 101):
     bpy.ops.object.delete()
 
     # Import .obj file
-    bpy.ops.import_scene.obj(filepath=obj_file_path)
+    bpy.ops.wm.obj_import(filepath=obj_file_path)
     print(f"Imported {obj_file_path} successfully.")
 
     # Add camera
