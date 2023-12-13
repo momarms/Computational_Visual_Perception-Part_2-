@@ -45,7 +45,7 @@ for obj_index in range(1, 101):
     bpy.context.scene.render.resolution_x = 512
     bpy.context.scene.render.resolution_y = 512
     bpy.context.scene.render.image_settings.file_format = 'PNG'
-    bpy.context.scene.render.image_settings.color_mode = 'RGBA'  # Set to RGBA for color
+    bpy.context.scene.render.image_settings.color_mode = 'BW'
     bpy.context.scene.render.image_settings.color_depth = '8'
     # bpy.context.scene.render.image_settings.use_zbuffer = True
     # bpy.context.scene.render.engine = 'CYCLES'
@@ -84,28 +84,16 @@ for obj_index in range(1, 101):
         # Link Attribute node to Shader to RGB node
         links.new(attribute_node.outputs[0], shader_to_rgb_node.inputs[0])
 
-        # Choose a shader type:
-
-        # 1. Emission Shader
+        # Emission Shader for ambient light (no shading)
         emission_shader_node = nodes.new(type='ShaderNodeEmission')
         emission_shader_node.location = (200, 0)
         links.new(shader_to_rgb_node.outputs[0], emission_shader_node.inputs[0])
-
-        # 2. Glossy Shader
-        # glossy_shader_node = nodes.new(type='ShaderNodeBsdfGlossy')
-        # glossy_shader_node.location = (200, 0)
-        # links.new(shader_to_rgb_node.outputs[0], glossy_shader_node.inputs[0])
-
-        # 3. Glass Shader
-        # glass_shader_node = nodes.new(type='ShaderNodeBsdfGlass')
-        # glass_shader_node.location = (200, 0)
-        # links.new(shader_to_rgb_node.outputs[0], glass_shader_node.inputs[0])
 
         # Create an Output Material node
         output_node = nodes.new(type='ShaderNodeOutputMaterial')
         output_node.location = (400, 0)
 
-        # Link the chosen shader to Output Material node
+        # Link the shader to Output Material node
         links.new(emission_shader_node.outputs[0], output_node.inputs[0])
 
     # Rotate camera around object and capture frames
