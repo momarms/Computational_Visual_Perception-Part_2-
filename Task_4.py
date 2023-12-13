@@ -15,8 +15,8 @@ if bpy.context.active_object:
 
 for obj_index in range (1, 5):
     # File path
-    obj_file_path = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Dataset\\real\\{obj_index}.obj'
-    output_directory = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Real_Rendering'
+    obj_file_path = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Dataset\\test\\{obj_index}.obj'
+    output_directory = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Test_Rendering\\{obj_index}'
 
     # Delete any existing meshes
     bpy.ops.object.select_all(action='DESELECT')
@@ -36,14 +36,14 @@ for obj_index in range (1, 5):
     print(f"Imported {obj_file_path} successfully.")
 
     # Add camera
-    cam_location = (0, 0, 2)
+    cam_location = (0, -3, 2)
     bpy.ops.object.camera_add(location=cam_location)
     camera_object = bpy.context.object
     target_point = Vector((0, 0, -0.5))
     bpy.context.scene.camera = camera_object
     
     # Add light source
-    bpy.ops.object.light_add(type='POINT', location=(0, 0, 3))
+    bpy.ops.object.light_add(type='POINT', location=(0, -3, 3))
     light_object = bpy.context.object
     light_object.data.energy = 500
  
@@ -68,7 +68,7 @@ for obj_index in range (1, 5):
     rotation_radius = 4
     
     for img_index in range(num_frames):
-        angle = radians((img_index / num_frames) * 360)
+        angle = radians(235 + (img_index / num_frames) * 90)
         
         # Rotate camera around the object
         camera_object.location = (
@@ -90,7 +90,7 @@ for obj_index in range (1, 5):
         )
         
         # Set the output path for the rendered image
-        bpy.context.scene.render.filepath = f"{output_directory}\\{img_index}"
+        bpy.context.scene.render.filepath = f"{output_directory}\\{img_index + 1}"
 
         # Render the image
         bpy.ops.render.render(write_still=True)
