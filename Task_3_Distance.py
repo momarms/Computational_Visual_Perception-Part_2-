@@ -52,7 +52,7 @@ for obj_index in range(1, 101):
     bpy.context.preferences.addons['cycles'].preferences.compute_device_type = 'CUDA'
 
     # Set background color
-    bpy.context.scene.world.node_tree.nodes["Background"].inputs["Color"].default_value = (1, 1, 1, 1)
+    # bpy.context.scene.world.node_tree.nodes["Background"].inputs["Color"].default_value = (1, 1, 1, 1)
 
     # Check if there is a material
     if len(obj.data.materials) == 0:
