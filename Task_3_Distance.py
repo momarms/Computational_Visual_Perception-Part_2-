@@ -6,6 +6,9 @@ from mathutils import Vector
 # Counter
 total_images_rendered = 0
 
+# Switch to Object Mode
+bpy.ops.object.mode_set(mode='OBJECT')
+
 for obj_index in range (1, 2):
     # File path
     obj_file_path = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Dataset\\colored_cloths\\{obj_index}.obj'
@@ -44,7 +47,9 @@ for obj_index in range (1, 2):
     bpy.context.scene.render.image_settings.file_format = 'PNG'
     bpy.context.scene.render.image_settings.color_mode = 'BW'
     bpy.context.scene.render.image_settings.color_depth = '8'
-    bpy.context.scene.render.image_settings.use_zbuffer = False
+    # bpy.context.scene.render.image_settings.use_zbuffer = True
+    # bpy.context.scene.render.engine = 'CYCLES'
+    bpy.context.preferences.addons['cycles'].preferences.compute_device_type = 'CUDA'
 
     # Rotate camera around object and capture frames
     num_frames = 50
