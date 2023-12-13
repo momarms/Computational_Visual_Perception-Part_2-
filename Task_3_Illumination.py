@@ -61,7 +61,7 @@ for obj_index in range (1, 101):
     # bpy.context.scene.render.engine = 'CYCLES'
     bpy.context.preferences.addons['cycles'].preferences.compute_device_type = 'CUDA'
 
-    # Set background to black
+    # Set background color
     bpy.context.scene.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0, 0, 0, 1)
      
     # Change scene and render the images
