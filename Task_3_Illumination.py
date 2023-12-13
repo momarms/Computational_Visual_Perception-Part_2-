@@ -11,8 +11,10 @@ random.seed(random_seed)
 # Counter
 total_images_rendered = 0
 
-# Switch to Object Mode
-bpy.ops.object.mode_set(mode='OBJECT')
+# Check if there is an active object
+if bpy.context.active_object:
+    # Switch to Object Mode
+    bpy.ops.object.mode_set(mode='OBJECT')
 
 for obj_index in range (1, 101):
     # File path
