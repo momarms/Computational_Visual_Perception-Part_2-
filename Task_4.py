@@ -16,7 +16,7 @@ if bpy.context.active_object:
 for obj_index in range (1, 5):
     # File path
     obj_file_path = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Dataset\\test\\{obj_index}.obj'
-    output_directory = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\Test_Rendering\\{obj_index}'
+    output_directory = f'D:\\FAU\\Studies\\4- WS 2023\\Computational Visual Perception\\Project\\Part 2\\test\\{obj_index}'
 
     # Delete any existing meshes
     bpy.ops.object.select_all(action='DESELECT')

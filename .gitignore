@@ -1,4 +1,5 @@
 .vs
-Distance_Rendering/
-Illumination_Rendering/
-Test_Rendering/
+cloth/
+distances/
+meshes/
+test/
