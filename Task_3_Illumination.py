@@ -46,7 +46,7 @@ for obj_index in range (1, 101):
     bpy.context.scene.camera = camera_object
     
     # Add light source
-    bpy.ops.object.light_add(type='POINT', location=(0, 0, 3))
+    bpy.ops.object.light_add(type='POINT', location=(0, 0, 2))
     light_object = bpy.context.object
     light_object.data.energy = 500
  
@@ -69,14 +69,15 @@ for obj_index in range (1, 101):
     # Change scene and render the images
     num_frames = 50
     rotation_radius = 4
+    light_angle_range = 45
     
     for img_index in range(num_frames):
-        angle = radians((img_index / num_frames) * 360)
+        cam_angle = radians((img_index / num_frames) * 360)
         
         # Rotate camera around the object
         camera_object.location = (
-            rotation_radius * cos(angle),
-            rotation_radius * sin(angle),
+            rotation_radius * cos(cam_angle),
+            rotation_radius * sin(cam_angle),
             cam_location[2],
         )
         
@@ -86,9 +87,11 @@ for obj_index in range (1, 101):
         camera_object.rotation_euler = rot_quat.to_euler()
         
         # Change light source location
+        light_angle = cam_angle + radians(random.uniform(-light_angle_range, light_angle_range))
+        
         light_object.location = (
-            rotation_radius * cos(radians(random.uniform(0, 360))),
-            rotation_radius * sin(radians(random.uniform(0, 360))),
+            rotation_radius * cos(light_angle),
+            rotation_radius * sin(light_angle),
             light_object.location[2],
         )
         
